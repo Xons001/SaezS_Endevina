@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.Random;
@@ -20,15 +21,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         r = new Random();
-        numAle = r.nextInt(100 + 1);
+        numAle = (int) (Math.random()* 100) + 1;
 
-
+        final EditText num = findViewById(R.id.num);
 
         final Button button = findViewById(R.id.Endevina);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 int cont=0;
-                    if (numAle == R.id.num) {
+                    if (numAle == Integer.parseInt(num.getText().toString())) {
                         Context context = getApplicationContext();
                         CharSequence text = "Numero acertado";
                         int duration = Toast.LENGTH_SHORT;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                         toast.show();
                         cont++;
                     }
+                    num.setText("");
             }
         });
     }
