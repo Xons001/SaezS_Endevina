@@ -46,5 +46,13 @@ public class MainActivity extends AppCompatActivity {
                     num.setText("");
             }
         });
+
+        final Button button2 = findViewById(R.id.Intento);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               setContentView(R.layout.activity_main2);
+            }
+        });
     }
 }
