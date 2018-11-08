@@ -39,7 +39,7 @@ public class RecordsAvtivity extends AppCompatActivity {
         records.add( new Record(42,"Laura") );
 
         // Inicialitzem l'ArrayAdapter amb el layout pertinent
-        adapter = new ArrayAdapter<Record>( this, R.layout.list_item, records )
+        adapter = new ArrayAdapter<Record>( this, R.layout.list_item2, records )
         {
             @Override
             public View getView(int pos, View convertView, ViewGroup container)
@@ -47,11 +47,11 @@ public class RecordsAvtivity extends AppCompatActivity {
                 // getView ens construeix el layout i hi "pinta" els valors de l'element en la posició pos
                 if( convertView==null ) {
                     // inicialitzem l'element la View amb el seu layout
-                    convertView = getLayoutInflater().inflate(R.layout.list_item, container, false);
+                    convertView = getLayoutInflater().inflate(R.layout.list_item2, container, false);
                 }
                 // "Pintem" valors (també quan es refresca)
-                ((TextView) convertView.findViewById(R.id.nom)).setText(getItem(pos).nom);
-                ((TextView) convertView.findViewById(R.id.intents)).setText(Integer.toString(getItem(pos).intents));
+               ((TextView) convertView.findViewById(R.id.nom)).setText(getItem(pos).nom);
+                ((TextView) convertView.findViewById(R.id.intent)).setText(Integer.toString(getItem(pos).intents));
                 return convertView;
             }
 

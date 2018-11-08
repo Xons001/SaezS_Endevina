@@ -21,8 +21,8 @@
         android:text="Endevina" />
 
     <Button
-        android:id="@+id/Intento"
+        android:id="@+id/TablaRecord"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Intento" />
+        android:text="Intento Records" />
 </LinearLayout>

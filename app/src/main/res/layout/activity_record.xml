@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".RecordsAvtivity">
 
+    <ListView
+        android:id="@+id/recordsView"
+        android:layout_width="343dp"
+        android:layout_height="463dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="1dp" />
+
 </android.support.constraint.ConstraintLayout>
