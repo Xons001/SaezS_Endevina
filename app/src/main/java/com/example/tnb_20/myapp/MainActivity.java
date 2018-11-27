@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.Random;
-import java.util.jar.Attributes;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +34,22 @@ public class MainActivity extends AppCompatActivity {
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                    if (numAle == Integer.parseInt(num.getText().toString())) {
+                if (!num.getText().toString().equals("")) {
+                    if (numAle < Integer.parseInt(num.getText().toString())) {
+                        Context context = getApplicationContext();
+                        CharSequence text = "Numero es mas pequeño";
+                        int duration = Toast.LENGTH_SHORT;
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                        num.setText("");
+                    } else if (numAle > Integer.parseInt(num.getText().toString())) {
+                        Context context = getApplicationContext();
+                        CharSequence text = "Numero es mas grande";
+                        int duration = Toast.LENGTH_SHORT;
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                        num.setText("");
+                    } else {
                         Context context = getApplicationContext();
                         CharSequence text = "Numero acertado";
                         int duration = Toast.LENGTH_SHORT;
@@ -50,28 +64,21 @@ public class MainActivity extends AppCompatActivity {
                         button.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
 
-                                EditText edit=(EditText)dialog.findViewById(R.id.Nombre);
-                                String text=edit.getText().toString();
+                                EditText edit = (EditText) dialog.findViewById(R.id.nombre);
+                                String text = edit.getText().toString();
+
+
 
                                 dialog.dismiss();
-                                name=text;
+                                name = text;
                             }
                         });
-
-
                         dialog.show();
-
-                    } else {
-                        Context context = getApplicationContext();
-                        CharSequence text = "Numero no acertado";
-                        int duration = Toast.LENGTH_SHORT;
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.show();
-                        cont++;
                     }
-                    num.setText("");
+                }
             }
         });
+
 
         final Button button2 = findViewById(R.id.TablaRecord);
         button2.setOnClickListener(new View.OnClickListener() {

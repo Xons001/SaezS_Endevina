@@ -50,7 +50,7 @@ public class RecordsAvtivity extends AppCompatActivity {
                     convertView = getLayoutInflater().inflate(R.layout.list_item2, container, false);
                 }
                 // "Pintem" valors (també quan es refresca)
-               ((TextView) convertView.findViewById(R.id.nom)).setText(getItem(pos).nom);
+               ((TextView) convertView.findViewById(R.id.nom)).setText( getItem(pos).nom );
                 ((TextView) convertView.findViewById(R.id.intent)).setText(Integer.toString(getItem(pos).intents));
                 return convertView;
             }
