@@ -3,4 +3,9 @@
     <string name="nombre">Name</string>
     <string name="cancelar">Cancelar</string>
     <string name="guardar">Ok</string>
+    <string name="dialog_text">Escribe tu nombre:</string>
+    <string name="titulo">Tabla de records</string>
+    <string name="adivinar">Endevina</string>
+    <string name="intent_record">Record de intentos</string>
+    <string name="num">Escribe el numero</string>
 </resources>

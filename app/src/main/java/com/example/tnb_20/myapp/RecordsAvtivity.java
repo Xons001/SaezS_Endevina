@@ -1,64 +1,48 @@
 package com.example.tnb_20.myapp;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.*;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-public class RecordsAvtivity extends AppCompatActivity {
+public class RecordsAvtivity extends Activity {
 
-    // Model: Record (intents=puntuació, nom)
-    class Record {
-        public int intents;
-        public String nom;
-
-        public Record(int _intents, String _nom ) {
-            intents = _intents;
-            nom = _nom;
-        }
-    }
-    // Model = Taula de records: utilitzem ArrayList
-    ArrayList<Record> records;
-
-    // ArrayAdapter serà l'intermediari amb la ListView
-    ArrayAdapter<Record> adapter;
+    private List<Player> players = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_record);
+        try{
+            BufferedReader fin = new BufferedReader(new InputStreamReader(openFileInput("playersfinal.txt")));
 
-        // Inicialitzem model
-        records = new ArrayList<Record>();
-        // Afegim alguns exemples
-        records.add( new Record(33,"Manolo") );
-        records.add( new Record(12,"Pepe") );
-        records.add( new Record(42,"Laura") );
-
-        // Inicialitzem l'ArrayAdapter amb el layout pertinent
-        adapter = new ArrayAdapter<Record>( this, R.layout.list_item2, records )
-        {
-            @Override
-            public View getView(int pos, View convertView, ViewGroup container)
-            {
-                // getView ens construeix el layout i hi "pinta" els valors de l'element en la posició pos
-                if( convertView==null ) {
-                    // inicialitzem l'element la View amb el seu layout
-                    convertView = getLayoutInflater().inflate(R.layout.list_item2, container, false);
-                }
-                // "Pintem" valors (també quan es refresca)
-               ((TextView) convertView.findViewById(R.id.nom)).setText( getItem(pos).nom );
-                ((TextView) convertView.findViewById(R.id.intent)).setText(Integer.toString(getItem(pos).intents));
-                return convertView;
+            String texto;
+            while((texto = fin.readLine())!=null){
+                String[] cadena = texto.split(",");
+                players.add(new Player(cadena[0],Integer.parseInt(cadena[1])));
             }
+            fin.close();
+        }catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
-        };
 
-        // busquem la ListView i li endollem el ArrayAdapter
-        ListView lv = (ListView) findViewById(R.id.recordsView);
-        lv.setAdapter(adapter);
+        final TextView tablaRecord = findViewById(R.id.record);
+        tablaRecord.setText("");
+        if(players.size()>0){
+            Collections.sort(players);
+            for (Player jug:players) {
+                tablaRecord.setText(tablaRecord.getText() + jug.toString());
+            }
+        }else{
+            tablaRecord.setText(tablaRecord.getText() + "No hay datos registrados");
+        }
     }
+
+
 }
